@@ -1,0 +1,5 @@
+Arduino接続先に注意
+recieveArduinoのCOMを変える必要あり
+ノートPC : COM4
+デスクトップ : COM7
+"B"で背面バック切り替え

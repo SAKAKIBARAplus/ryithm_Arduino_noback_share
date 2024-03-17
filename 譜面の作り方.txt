@@ -1,0 +1,6 @@
+0.Scenes "CSVWriter" を開く。
+1.Script "NoteCSVmaker"内部の出力先csv名を対象のものに変更する。
+2.GameMusic オブジェクトのAudioclipを対象のものにする
+3.Let's play
+4.出力されたcsvのタッチ長押し判定が固まって出力されているのでA列を基準に昇順に並び替える。
+5.Build and Runで実際に確認
