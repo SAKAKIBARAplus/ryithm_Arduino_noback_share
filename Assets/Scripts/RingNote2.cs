@@ -84,7 +84,7 @@ public class RingNote2 : MonoBehaviour
         }
         else if (statusflag == 2)
         {
-            if (this.gameObject.transform.localScale.x <= perfectscale + 0.01f)            //大きさがPerfectエリアと同じになったらリストに追加
+            if (this.gameObject.transform.localScale.x <= perfectscale + 0.12f)            //大きさがPerfectエリアと同じになったらリストに追加
             {
                 checkTiming.Timing["perfect"].Add(this.gameObject);
                 this.gameObject.GetComponent<Renderer>().material.color = new Color(0.6f, 1f, 0.5f);

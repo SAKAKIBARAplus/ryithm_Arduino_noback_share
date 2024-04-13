@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class Setting : MonoBehaviour
 {
@@ -37,6 +38,24 @@ public class Setting : MonoBehaviour
     private Color defaultcolor = new Color(1f, 1f, 0.9f);
     private Color modifycolor = new Color(1f, 1f, 0.39f);
 
+    private Color defaultcolor_easy = new Color(0.8f, 1f, 0.8f);
+    private Color modifycolor_easy = new Color(0.8f, 1f, 0.4f);
+
+    private Color defaultcolor1;
+    private Color modifycolor1;
+    private Color defaultcolor1_easy;
+    private Color modifycolor1_easy;
+
+    public int touchflag = 0;
+
+    private int EASYMODE = 0;
+    // テキストを表示するゲームオブジェクトへの参照
+    public GameObject textObject;
+    // テキストコンポーネントへの参照
+    private Text textComponent;
+    // 変更するテキスト
+    public string newText = "";
+
     public GameObject song0;
     public GameObject song1;
     public GameObject song2;
@@ -45,6 +64,7 @@ public class Setting : MonoBehaviour
     public GameObject song5;
     public GameObject song6;
     public GameObject song7;
+    public GameObject ModeSelect;
 
     public GameObject background;
     public GameObject blackback;
@@ -75,6 +95,13 @@ public class Setting : MonoBehaviour
         //while(Time.time < 1)
         //{
         //}
+        defaultcolor1 = defaultcolor;
+        modifycolor1 = modifycolor;
+        defaultcolor1_easy = defaultcolor_easy;
+        modifycolor1_easy = modifycolor_easy;
+
+        // テキストコンポーネントを取得
+        textComponent = textObject.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -87,56 +114,98 @@ public class Setting : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) || Arduino.GetComponent<StockData>().RValuebin == 1)
             {
-                setinformation();
+                if (touchflag == 0)
+                {
+                    setinformation();
+                    if (EASYMODE == 0)
+                    {
+                        defaultcolor1 = defaultcolor;
+                        modifycolor1 = modifycolor;
+                        defaultcolor1_easy = defaultcolor_easy;
+                        modifycolor1_easy = modifycolor_easy;
+                    }
+                    else
+                    {
+                        defaultcolor1 = defaultcolor_easy;
+                        modifycolor1 = modifycolor_easy;
+                        defaultcolor1_easy = defaultcolor;
+                        modifycolor1_easy = modifycolor;
+                    }
+                }
+
+                ChangeTheText();
+                
+                song0.GetComponent<Image>().color = defaultcolor1;
+                song1.GetComponent<Image>().color = defaultcolor1;
+                song2.GetComponent<Image>().color = defaultcolor1;
+                song3.GetComponent<Image>().color = defaultcolor1;
+                song4.GetComponent<Image>().color = defaultcolor1;
+                song5.GetComponent<Image>().color = defaultcolor1;
+                song6.GetComponent<Image>().color = defaultcolor1;
+                song7.GetComponent<Image>().color = defaultcolor1;
+                ModeSelect.GetComponent<Image>().color = modifycolor1_easy;
+
+                touchflag = touchflag + 1;
+
+            }
+            else
+            {
+                touchflag = 0;
             }
 
             if (select == 0)
             {
-                song0.GetComponent<Image>().color = modifycolor;      //色を変える
-                song1.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song7.GetComponent<Image>().color = defaultcolor;      //色を戻す
+                song0.GetComponent<Image>().color = modifycolor1;      //色を変える
+                song1.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                ModeSelect.GetComponent<Image>().color = defaultcolor1_easy;      //色を戻す
             }
             if (select == 1)
             {
-                song0.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song1.GetComponent<Image>().color = modifycolor;      //色を変える
-                song2.GetComponent<Image>().color = defaultcolor;      //色を戻す
+                song0.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song1.GetComponent<Image>().color = modifycolor1;      //色を変える
+                song2.GetComponent<Image>().color = defaultcolor1;      //色を戻す
             }
             if (select == 2)
             {
-                song1.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song2.GetComponent<Image>().color = modifycolor;      //色を変える
-                song3.GetComponent<Image>().color = defaultcolor;      //色を戻す
+                song1.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song2.GetComponent<Image>().color = modifycolor1;      //色を変える
+                song3.GetComponent<Image>().color = defaultcolor1;      //色を戻す
             }
             if (select == 3)
             {
-                song2.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song3.GetComponent<Image>().color = modifycolor;      //色を変える
-                song4.GetComponent<Image>().color = defaultcolor;      //色を戻す
+                song2.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song3.GetComponent<Image>().color = modifycolor1;      //色を変える
+                song4.GetComponent<Image>().color = defaultcolor1;      //色を戻す
             }
             if (select == 4)
             {
-                song3.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song4.GetComponent<Image>().color = modifycolor;      //色を変える
-                song5.GetComponent<Image>().color = defaultcolor;      //色を戻す
+                song3.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song4.GetComponent<Image>().color = modifycolor1;      //色を変える
+                song5.GetComponent<Image>().color = defaultcolor1;      //色を戻す
             }
             if (select == 5)
             {
-                song4.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song5.GetComponent<Image>().color = modifycolor;      //色を変える
-                song6.GetComponent<Image>().color = defaultcolor;      //色を戻す
+                song4.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song5.GetComponent<Image>().color = modifycolor1;      //色を変える
+                song6.GetComponent<Image>().color = defaultcolor1;      //色を戻す
             }
             if (select == 6)
             {
-                song5.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song6.GetComponent<Image>().color = modifycolor;      //色を変える
-                song7.GetComponent<Image>().color = defaultcolor;      //色を戻す
+                song5.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song6.GetComponent<Image>().color = modifycolor1;      //色を変える
+                song7.GetComponent<Image>().color = defaultcolor1;      //色を戻す
             }
             if (select == 7)
             {
-                song0.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song6.GetComponent<Image>().color = defaultcolor;      //色を戻す
-                song7.GetComponent<Image>().color = modifycolor;      //色を変える
+                song6.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song7.GetComponent<Image>().color = modifycolor1;      //色を変える
+                ModeSelect.GetComponent<Image>().color = defaultcolor1_easy;      //色を戻す
+            }
+            if (select == 8)
+            {
+                song0.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                song7.GetComponent<Image>().color = defaultcolor1;      //色を戻す
+                ModeSelect.GetComponent<Image>().color = modifycolor1_easy;      //色を変える
             }
         }
 
@@ -201,12 +270,30 @@ public class Setting : MonoBehaviour
             csvname = song7.name;
             Audio = amenohikukan;
         }
-        Destroy(GameObject.Find("MusicSelect"));                //曲選択画面削除     
-        selected = 1;                                           //選択済みフラグ ON 
-        Audio.Play();
-        CSV.SetActive(true);
+        if (select == 8)
+        {
+            if (EASYMODE == 0)
+            {
+                EASYMODE = 1;
+            }
+            else
+            {
+                EASYMODE = 0;
+            }
+        }
+        else
+        {
+            if(EASYMODE == 1)
+            {
+                csvname = csvname + "_easy";
+            }
+            Destroy(GameObject.Find("MusicSelect"));                //曲選択画面削除     
+            selected = 1;                                           //選択済みフラグ ON 
+            Audio.Play();
+            CSV.SetActive(true);
 
-        BGM.Stop();
+            BGM.Stop();
+        }
 
     }
 
@@ -233,13 +320,13 @@ public class Setting : MonoBehaviour
                 buttoncondition = 0;
             }
 
-                if (select >= 8)
+                if (select >= 9)
             {
                 select = 0;
             }
             if (select <= -1)
             {
-                select = 7;
+                select = 8;
             }
         }
 
@@ -263,5 +350,19 @@ public class Setting : MonoBehaviour
             }
         }
 
+    }
+
+    public void ChangeTheText()
+    {
+        if(EASYMODE == 0)
+        {
+            newText = "小学生向け\nイージーモード\nに変更する";
+        }
+        else
+        {
+            newText = "中学生以上\nノーマルモード\nに変更する"; 
+        }
+        // テキストを変更
+        textComponent.text = newText;
     }
 }
