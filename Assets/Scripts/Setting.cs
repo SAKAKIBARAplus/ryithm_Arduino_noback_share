@@ -27,6 +27,7 @@ public class Setting : MonoBehaviour
     public AudioSource haisense;
     public AudioSource shining_star;
     public AudioSource supanakatate;
+    public AudioSource danceparty;
     public AudioSource selectM;
     public AudioClip selectmusic;
     public AudioClip fixmusic;
@@ -228,7 +229,7 @@ public class Setting : MonoBehaviour
         if (select == 0)
         {
             csvname = song0.name;
-            Audio = supanakatate;            
+            Audio = danceparty;            
         }
 
         if (select == 1)
@@ -263,12 +264,12 @@ public class Setting : MonoBehaviour
         if (select == 6)
         {
             csvname = song6.name;
-            Audio = nutscracker;
+            Audio = amenohikukan;
         }
         if (select == 7)
         {
             csvname = song7.name;
-            Audio = amenohikukan;
+            Audio = supanakatate;
         }
         if (select == 8)
         {

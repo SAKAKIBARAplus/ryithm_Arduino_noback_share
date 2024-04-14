@@ -24,7 +24,7 @@ public class CSVWriter : MonoBehaviour
     {
         StreamWriter streamWriter;      //書き込む文字の操作をする関数
         FileInfo fileInfo;      //アドレス
-        fileInfo = new FileInfo(Application.dataPath + "/Scripts/Resources/supanakatate_easy.csv");
+        fileInfo = new FileInfo(Application.dataPath + "/Scripts/Resources/danceparty.csv");
         streamWriter = fileInfo.AppendText();   //新しいテキストファイルに書き込みを行うstreamwriterを取得
         streamWriter.WriteLine(txt);        //txtの値をストリームライターに書き込む
         streamWriter.Flush();               //ストリームライターの値を対象に書き込む
